@@ -3,6 +3,10 @@ const env = require('dotenv');
 const { default: mongoose } = require('mongoose');
 const app = express();
 
+
+//routes 
+const userRoutes = require('./routes/user.js');
+
 // environment variable
 env.config();
 
@@ -14,11 +18,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use(express.json());
 
-app.get('/', (req, res, next) => {
-  res.status(200).json({
-    message: 'hello from server'
-  });
-})
+// routes middleware
+app.use('/api', userRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${process.env.PORT}`);
