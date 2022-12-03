@@ -5,7 +5,7 @@ const app = express();
 
 
 //routes 
-const userRoutes = require('./routes/user.js');
+const authRoutes = require('./routes/auth.js');
 
 // environment variable
 env.config();
@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use(express.json());
 
 // routes middleware
-app.use('/api', userRoutes)
+app.use('/api', authRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${process.env.PORT}`);
