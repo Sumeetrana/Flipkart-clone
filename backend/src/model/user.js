@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     min: 3,
     max: 20
   },
-  firstName: {
+  lastName: {
     type: String,
     required: true,
     trim: true,
@@ -50,6 +50,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.virtual('password')
   .set(function (password) {
+    console.log("password: ", password);
     this.hash_password = bcrypt.hashSync(password, 10);
   })
 
