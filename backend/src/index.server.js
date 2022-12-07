@@ -1,11 +1,12 @@
 const express = require('express');
 const env = require('dotenv');
 const { default: mongoose } = require('mongoose');
-const app = express();
 
+const app = express();
 
 //routes 
 const authRoutes = require('./routes/auth.js');
+const productRoutes = require('./routes/product.js');
 const categoryRoutes = require('./routes/category.js');
 const adminAuthRoutes = require('./routes/admin/auth.js');
 
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use('/api', authRoutes);
 app.use('/api', adminAuthRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${process.env.PORT}`);
